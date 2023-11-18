@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Matching"
+        android:id="@+id/nav_manual"
+        android:icon="@drawable/home"/>
+
+    <item android:title="Automatic"
+        android:id="@+id/nav_automatic"
+        android:icon="@drawable/automatic"
+         />
+
+    <item android:title="Notification"
+        android:id="@+id/nav_notification"
+        android:icon="@drawable/notification"
+        />
+
+    <item android:title="Chat"
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/chat"
+        />
+    <item android:title="My Page"
+        android:icon="@drawable/person"
+        android:id="@+id/nav_mypage"
+        />
+
+</menu>

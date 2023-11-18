@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".registration.VerifyAge">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/primary"
+        android:text="Blur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="80dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="70dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:gravity="center"
+            android:text="Sign Up"/>
+
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bda_logo"/>
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Terms of Service"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="I am at least 18 years old, single, and agree to the Terms of Service, Community Guidelines and Privacy Policy." />
+
+        <RadioButton
+            android:id="@+id/rbAgreeAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Agree"
+            />
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_goRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="640dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:text="Next"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="700dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an acount?"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/signInNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Sing In"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:textColor="@color/primary"/>
+    </LinearLayout>
+</RelativeLayout>

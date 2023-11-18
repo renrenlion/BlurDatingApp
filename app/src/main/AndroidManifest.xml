@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BlurDatingApplication"
+        tools:targetApi="31">
+        <activity
+            android:name=".Setting"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpProfile"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpInterest"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpProfilePhysicalFeature"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpUserInfo3"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpUserInfo2"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpUserInfo"
+            android:exported="false" />
+        <activity
+            android:name=".registration.VerifyAge"
+            android:exported="false" />
+        <activity
+            android:name=".registration.Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".LaunchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

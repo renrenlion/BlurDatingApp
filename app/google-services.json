@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1024721697532",
+    "project_id": "blur-dating-application",
+    "storage_bucket": "blur-dating-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024721697532:android:e764625864ae858e57f579",
+        "android_client_info": {
+          "package_name": "com.example.blurdatingapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf-yx5pTHqovxLhL_1O7kZwfiCxMQnGz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

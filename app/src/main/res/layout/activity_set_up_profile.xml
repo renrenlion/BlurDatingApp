@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="@color/blue"
+    tools:context=".registration.SetUpUserProfile">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/primary"
+        android:text="Blur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="70dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Profile"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/lens"
+            android:backgroundTint="@color/primary"/>
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:isScrollContainer="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Job"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_job"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/job_list" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Blood Type"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_bloodtype"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/bloodtype_list" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Child "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_child"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/answer_list"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Drinking"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_drinking"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/frequency_list" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Smoking "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_smoking"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/frequency_list" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Work out"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_workout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/frequency_list"
+                    android:hint="black" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Day Off"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <Spinner
+                    android:id="@+id/spinner_dayoff"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/frequency_list"
+                    android:hint="black" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="120dp"
+                    android:text="Next"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

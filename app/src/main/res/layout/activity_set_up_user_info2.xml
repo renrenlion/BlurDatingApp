@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".registration.SetUpUserInfo2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/primary"
+        android:text="Blur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="60dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="User Information "/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/arrow_icon"
+                android:backgroundTint="@color/primary"/>
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/arrow_icon"
+                android:backgroundTint="@color/primary"/>
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="@drawable/arrow_icon"
+                android:backgroundTint="@color/gray"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textStyle="bold"
+            android:text="*Zip Code"
+            android:textColor="@color/primary"/>
+        <EditText
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="12345"
+                android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="Phone Number"
+            android:textColor="@color/primary"/>
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="000000000"
+            android:inputType="phone"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:text="*Birth Day"
+            android:textColor="@color/primary"/>
+        <EditText
+            android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="mm/dd/yyyy"
+            android:inputType="date">
+        </EditText>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:text="*Gender "/>
+        <Spinner
+            android:id="@+id/spinner_gender"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:entries="@array/gender_list" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="-5dp"
+            android:background="@color/gray"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:text="*Preferred Gender "/>
+
+        <Spinner
+            android:id="@+id/spinner_preferred_gender"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:entries="@array/gender_list" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="-5dp"
+            android:background="@color/gray"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginTop="680dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:text="Next"/>
+
+</RelativeLayout>

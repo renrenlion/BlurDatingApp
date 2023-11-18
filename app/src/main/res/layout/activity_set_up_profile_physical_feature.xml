@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:background="@color/blue"
+    tools:context=".registration.SetUpProfilePhysicalFeature">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/primary"
+        android:text="Blur" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="70dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Physical Features"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/lens"
+            android:backgroundTint="@color/primary"/>
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:isScrollContainer="false">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal">
+                    <Spinner
+                        android:id="@+id/spinner_height_int"
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:hint="black"
+                        android:entries="@array/number_array"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=". "
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:id="@+id/spinner_height_dec"
+                        android:layout_width="80dp"
+                        android:layout_height="60dp"
+                        android:hint="black"
+                        android:entries="@array/number_array"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ft "
+                        android:textSize="18dp"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Hair Color "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_hairColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/hair_color_list"
+                    android:hint="black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Eye Color "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_eyeColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/eye_color_list"
+                    android:hint="black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Body Type "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_bodytype"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/body_type_list"
+                    android:hint="black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Face Type "
+                    android:textColor="@color/primary"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinner_facetype"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:entries="@array/face_type_list"
+                    android:hint="black" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="-5dp"
+                    android:background="@color/gray" />
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="120dp"
+                    android:text="Next"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</RelativeLayout>

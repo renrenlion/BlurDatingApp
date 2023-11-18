@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blur</string>
+
+    <string-array name="gender_list">
+        <item>-</item>
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="number_array">
+        <item>-</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="hair_color_list">
+        <item>-</item>
+        <item>Brown</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Gray</item>
+        <item>Hazel</item>
+        <item>Amber</item>
+        <item>Red</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="eye_color_list">
+        <item>-</item>
+        <item>Black</item>
+        <item>Brown</item>
+        <item>Blonde</item>
+        <item>Red</item>
+        <item>Gray</item>
+        <item>Silver</item>
+        <item>Platinum</item>
+        <item>Dark Brown</item>
+        <item>Auburn</item>
+        <item>Champagne Blonde</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="body_type_list">
+        <item>-</item>
+        <item>Slim</item>
+        <item>Muscular</item>
+        <item>Curvy</item>
+        <item>Chubby</item>
+        <item>Pear-shaped</item>
+        <item>Apple-shaped</item>
+        <item>Proportional</item>
+        <item>Hourglass</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="face_type_list">
+        <item>-</item>
+        <item>Cute</item>
+        <item>Active Cute</item>
+        <item>Feminine</item>
+        <item>Fresh</item>
+        <item>Soft Elegant</item>
+        <item>Elegant</item>
+        <item>Cool Casual</item>
+        <item>Casual</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="sport_list">
+        <item>-</item>
+        <item>American Football</item>
+        <item>Athletics</item>
+        <item>Archery</item>
+        <item>Badminton</item>
+        <item>Baseball</item>
+        <item>Basketball</item>
+        <item>Bowling</item>
+        <item>Boxing</item>
+        <item>Canoeing/Kayaking</item>
+        <item>Cricket</item>
+        <item>Cycling</item>
+        <item>Fencing</item>
+        <item>Figure Skating</item>
+        <item>Golf</item>
+        <item>Goalball</item>
+        <item>Hockey (Field)</item>
+        <item>Hockey (Ice)</item>
+        <item>Ice Hockey</item>
+        <item>Jiu-Jitsu</item>
+        <item>Judo</item>
+        <item>Karate</item>
+        <item>Lacrosse</item>
+        <item>Motorsports</item>
+        <item>Rowing</item>
+        <item>Rugby</item>
+        <item>Skiing</item>
+        <item>Skateboarding</item>
+        <item>Softball</item>
+        <item>Snowboarding</item>
+        <item>Speed Skating</item>
+        <item>Squash</item>
+        <item>Surfing</item>
+        <item>Synchronized Swimming</item>
+        <item>Swimming</item>
+        <item>Table Tennis</item>
+        <item>Tennis</item>
+        <item>Volleyball</item>
+        <item>Water Polo</item>
+        <item>Winter Sports</item>
+        <item>Wrestling</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="music_list">
+        <item>-</item>
+        <item>Action Games</item>
+        <item>Adventure Games</item>
+        <item>Arcade Games</item>
+        <item>Board Games</item>
+        <item>Brain Games</item>
+        <item>Battle Royale Games</item>
+        <item>Card Games</item>
+        <item>Educational Games</item>
+        <item>Horror Games</item>
+        <item>Mobile Games</item>
+        <item>Multiplayer Online Battle Arena (MOBA)</item>
+        <item>Party Games</item>
+        <item>Platformer Games</item>
+        <item>Puzzle Games</item>
+        <item>Racing Games</item>
+        <item>Role-Playing Games</item>
+        <item>Rhythm Games</item>
+        <item>SandBox Games</item>
+        <item>Shooter Games</item>
+        <item>Simulation Games</item>
+        <item>Sports Games</item>
+        <item>Strategy Games</item>
+        <item>Quiz Games</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="gaming_list">
+        <item>-</item>
+        <item>Action Games</item>
+        <item>Adventure Games</item>
+        <item>Arcade Games</item>
+        <item>Board Games</item>
+        <item>Brain Games</item>
+        <item>Battle Royale Games</item>
+        <item>Card Games</item>
+        <item>Educational Games</item>
+        <item>Horror Games</item>
+        <item>Mobile Games</item>
+        <item>Multiplayer Online Battle Arena (MOBA)</item>
+        <item>Party Games</item>
+        <item>Platformer Games</item>
+        <item>Puzzle Games</item>
+        <item>Racing Games</item>
+        <item>Role-Playing Games</item>
+        <item>Rhythm Games</item>
+        <item>SandBox Games</item>
+        <item>Shooter Games</item>
+        <item>Simulation Games</item>
+        <item>Sports Games</item>
+        <item>Strategy Games</item>
+        <item>Quiz Games</item>
+    </string-array>
+
+    <string-array name="food_list">
+        <item>-</item>
+        <item>American Cuisine</item>
+        <item>Chinese Cuisine</item>
+        <item>French Cuisine</item>
+        <item>Greek Cuisine</item>
+        <item>Indian Cuisine</item>
+        <item>Italian Cuisine</item>
+        <item>Japanese Cuisine</item>
+        <item>Korean Cuisine</item>
+        <item>Mexican Cuisine</item>
+        <item>Middle Eastern Cuisine</item>
+        <item>Spanish Cuisine</item>
+        <item>Thai Cuisine</item>
+        <item>Vietnamese Cuisine</item>
+    </string-array>
+
+
+    <string-array name="traveling_list">
+        <item>-</item>
+        <item>Aegean Sea Cruise</item>
+        <item>Auckland, New Zealand</item>
+        <item>Arequipa, Peru</item>
+        <item>Antigua, Guatemala</item>
+        <item>Barcelona, Spain</item>
+        <item>Bali, Indonesia</item>
+        <item>Bangkok, Thailand</item>
+        <item>Banff, Canada</item>
+        <item>Beijing, China</item>
+        <item>Bergen, Norway</item>
+        <item>Berlin, Germany</item>
+        <item>Bern, Switzerland</item>
+        <item>Budapest, Hungary</item>
+        <item>Cairns, Australia</item>
+        <item>Cairo, Egypt</item>
+        <item>California Wine Country, USA</item>
+        <item>Canberra, Australia</item>
+        <item>Casablanca, Morocco</item>
+        <item>Colosseum, Rome, Italy</item>
+        <item>Crete, Greece</item>
+        <item>Cusco, Peru</item>
+        <item>Delphi, Greece</item>
+        <item>Denali National Park, Alaska, USA</item>
+        <item>Dubai, United Arab Emirates</item>
+        <item>Edinburgh, Scotland</item>
+        <item>Fiji</item>
+        <item>Fez, Morocco</item>
+        <item>Grand Canyon, USA</item>
+        <item>Grand Teton National Park, USA</item>
+        <item>Gold Coast, Australia</item>
+        <item>Goa, India</item>
+        <item>Guam</item>
+        <item>Hamburg, Germany</item>
+        <item>Hanoi, Vietnam</item>
+        <item>Hawaii, USA</item>
+        <item>Hiking</item>
+        <item>Ho Chi Minh City, Vietnam</item>
+        <item>Honolulu, Hawaii, USA</item>
+        <item>Hot Air Ballooning</item>
+        <item>Hue, Vietnam</item>
+        <item>Iguazu Falls, Brazil</item>
+        <item>Istanbul, Turkey</item>
+        <item>Jaipur, India</item>
+        <item>Jerusalem, Israel</item>
+        <item>Jet Skiing</item>
+        <item>Juneau, Alaska, USA</item>
+        <item>Kauai, Hawaii, USA</item>
+        <item>Kyoto, Japan</item>
+        <item>Lima, Peru</item>
+        <item>Lisbon, Portugal</item>
+        <item>London, UK</item>
+        <item>Lucerne, Switzerland</item>
+        <item>Luxor, Egypt</item>
+        <item>Madagascar</item>
+        <item>Machu Picchu, Peru</item>
+        <item>Maui, Hawaii, USA</item>
+        <item>Marrakech, Morocco</item>
+        <item>Mexico City, Mexico</item>
+        <item>Monaco</item>
+        <item>Montego Bay, Jamaica</item>
+        <item>Montreal, Canada</item>
+        <item>Moscow, Russia</item>
+        <item>Muscat, Oman</item>
+        <item>Nairobi, Kenya</item>
+        <item>Naples, Italy</item>
+        <item>New Orleans, USA</item>
+        <item>New York, USA</item>
+        <item>Niagara Falls, Canada/USA</item>
+        <item>Opera and Theater</item>
+        <item>Oslo, Norway</item>
+        <item>Paris, France</item>
+        <item>Patagonia, Chile</item>
+        <item>Perth, Australia</item>
+        <item>Photography</item>
+        <item>Picnicking</item>
+        <item>Porto, Portugal</item>
+        <item>Prague, Czech Republic</item>
+        <item>Quebec City, Canada</item>
+        <item>Rafting</item>
+        <item>Relaxing on the Beach</item>
+        <item>Rio de Janeiro, Brazil</item>
+        <item>Rome, Italy</item>
+        <item>Rotorua, New Zealand</item>
+        <item>Sailing</item>
+        <item>San Diego, California, USA</item>
+        <item>San Francisco, USA</item>
+        <item>San Miguel de Allende, Chile</item>
+        <item>Santorini, Greece</item>
+        <item>Santiago, Chile</item>
+        <item>Sightseeing</item>
+        <item>Sightseeing Tours</item>
+        <item>Siem Reap, Cambodia</item>
+        <item>Sicily, Italy</item>
+        <item>Singapore</item>
+        <item>Skiing</item>
+        <item>Snorkeling</item>
+        <item>Snowboarding</item>
+        <item>Soul, South Korea</item>
+        <item>Spa and Wellness</item>
+        <item>St. Lucia, Caribbean</item>
+        <item>St. Petersburg, Russia</item>
+        <item>Surfing</item>
+        <item>Sydney, Australia</item>
+        <item>Taj Mahal, India</item>
+        <item>Tasmania, Australia</item>
+        <item>Tennis</item>
+        <item>Thai Islands</item>
+        <item>Thailand</item>
+        <item>Tikal, Guatemala</item>
+        <item>Toledo, Spain</item>
+        <item>Travel Guides</item>
+        <item>Udaipur, India</item>
+        <item>Venice, Italy</item>
+        <item>Vienna, Austria</item>
+        <item>Vietnam</item>
+        <item>Washington D.C., USA</item>
+        <item>Wellington, New Zealand</item>
+        <item>Whale Watching</item>
+        <item>Wildlife Reserves</item>
+        <item>Wind Surfing</item>
+        <item>Wine Tasting</item>
+        <item>Yoga Retreats</item>
+        <item>Yogyakarta, Indonesia</item>
+        <item>Yosemite National Park, California, USA</item>
+        <item>Zambia</item>
+        <item>Zimbabwe</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="activity_list">
+        <item>-</item>
+        <item>Amusement Parks</item>
+        <item>Biking</item>
+        <item>Bird Watching</item>
+        <item>Boating</item>
+        <item>Botanical Gardens</item>
+        <item>Bungee Jumping</item>
+        <item>Camping</item>
+        <item>Canoeing</item>
+        <item>Cultural Tours</item>
+        <item>Cycling Tours</item>
+        <item>Festivals and Events</item>
+        <item>Fishing</item>
+        <item>Food Tasting</item>
+        <item>Golfing</item>
+        <item>Hiking</item>
+        <item>Historical Sites Visits</item>
+        <item>Hot Air Ballooning</item>
+        <item>Horseback Riding</item>
+        <item>Jet Skiing</item>
+        <item>Kayaking</item>
+        <item>Museums</item>
+        <item>Local Cuisine Cooking Classes</item>
+        <item>Local Markets</item>
+        <item>Nightlife</item>
+        <item>Opera and Theater</item>
+        <item>Photography</item>
+        <item>Picnicking</item>
+        <item>Rafting</item>
+        <item>Relaxing on the Beach</item>
+        <item>Rock Climbing</item>
+        <item>Scuba Diving</item>
+        <item>Shopping</item>
+        <item>Sightseeing</item>
+        <item>Sightseeing Tours</item>
+        <item>Skiing</item>
+        <item>Skydiving</item>
+        <item>Snorkeling</item>
+        <item>Snorkeling</item>
+        <item>Spa and Wellness</item>
+        <item>Surfing</item>
+        <item>Tennis</item>
+        <item>Whale Watching</item>
+        <item>Wildlife Reserves</item>
+        <item>Wine Tasting</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="reading_list">
+        <item>-</item>
+        <item>Art</item>
+        <item>Biographies</item>
+        <item>Business</item>
+        <item>Children Books</item>
+        <item>Cookbooks</item>
+        <item>Comics and Manga</item>
+        <item>Computers</item>
+        <item>Dictionaries</item>
+        <item>Education</item>
+        <item>Environment</item>
+        <item>Fashion</item>
+        <item>History</item>
+        <item>Novels</item>
+        <item>Poetry</item>
+        <item>Religion</item>
+        <item>Science</item>
+        <item>Self-Help</item>
+        <item>Travel Guides</item>
+    </string-array>
+
+    <string-array name="job_list">
+        <item>-</item>
+        <item>Student</item>
+        <item>Part-Time</item>
+        <item>Accountant</item>
+        <item>Aerospace Engineer</item>
+        <item>Architect</item>
+        <item>Art Director</item>
+        <item>Biomedical Engineer</item>
+        <item>Business Analyst</item>
+        <item>Chemical Engineer</item>
+        <item>Civil Engineer</item>
+        <item>Computer Programmer</item>
+        <item>Copywriter</item>
+        <item>Digital Marketing Specialist</item>
+        <item>Editor</item>
+        <item>Electrical Engineer</item>
+        <item>Executive Chef</item>
+        <item>Fashion Designer</item>
+        <item>Forensic Scientist</item>
+        <item>Front End Developer</item>
+        <item>Geologist</item>
+        <item>Interior Designer</item>
+        <item>Investment Analyst</item>
+        <item>Jazz Musician</item>
+        <item>Journalist</item>
+        <item>Landscape Architect</item>
+        <item>Librarian</item>
+        <item>Logistician</item>
+        <item>Market Research Analyst</item>
+        <item>Mathematician</item>
+        <item>Medical Illustrator</item>
+        <item>Network Administrator</item>
+        <item>Occupational Therapist</item>
+        <item>Optometrist</item>
+        <item>Photographer</item>
+        <item>Physicist</item>
+        <item>Product Manager</item>
+        <item>Psychologist</item>
+        <item>Quality Assurance Specialist</item>
+        <item>Radiation Therapist</item>
+        <item>Real Estate Agent</item>
+        <item>Research Scientist</item>
+        <item>Robotics Engineer</item>
+        <item>Security Analyst</item>
+        <item>Software Architect</item>
+        <item>Speech-Language Pathologist</item>
+        <item>Supply Chain Manager</item>
+        <item>Technical Writer</item>
+        <item>UX/UI Designer</item>
+        <item>Veterinarian</item>
+        <item>Video Game Developer</item>
+        <item>Wind Turbine Technician</item>
+        <item>X-Ray Technologist</item>
+        <item>Youth Counselor</item>
+        <item>Zoologist</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="bloodtype_list">
+        <item>-</item>
+        <item>A</item>
+        <item>B</item>
+        <item>AB</item>
+        <item>O</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="answer_list">
+        <item>-</item>
+        <item>No</item>
+        <item>Yes</item>
+    </string-array>
+
+    <string-array name="frequency_list">
+        <item>-</item>
+        <item>Not</item>
+        <item>Once a week</item>
+        <item>3 times a week</item>
+        <item>5 times a week</item>
+        <item>Every Day</item>
+    </string-array>
+
+    <string-array name="dayoff_list">
+        <item>-</item>
+        <item>Saturday and Sunday</item>
+        <item>Friday, Saturday, Sunday</item>
+        <item>Every Day</item>
+        <item>Other</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
+
+
+
+
+
+
+
