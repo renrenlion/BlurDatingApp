@@ -3,6 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".chat.ChatFragment">
+
+    <!-- Title: Matches -->
+    <TextView
+        android:id="@+id/matches_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matches"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Chatroom List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatroom_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/matches_title"
+        tools:listitem="@layout/item_chatroom"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:padding="8dp"
+        />
 
 </RelativeLayout>

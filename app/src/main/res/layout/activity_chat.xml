@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivity">
+
+    <RelativeLayout
+        android:id="@+id/chat_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_button"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/white"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/other_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_toLeftOf="@+id/request_unblur_btn"
+            android:id="@+id/timer_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24:00"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/other_user"
+            android:layout_marginStart="20dp"
+            />
+
+        <Button
+            android:id="@+id/request_unblur_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request to unblur"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/darker_primary"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_messages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/chat_toolbar"
+        android:layout_above="@+id/bottom_layout"
+        />
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/message_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@+id/send_message_btn"
+            android:background="@drawable/send_message_edit"
+            android:elevation="4dp"
+            android:hint="Send a message"
+            android:padding="10dp"
+            />
+
+        <ImageButton
+            android:id="@+id/send_message_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/send_button"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/primary"
+            android:padding="8dp"
+            android:layout_marginStart="10dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
