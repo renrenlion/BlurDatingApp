@@ -77,4 +77,6 @@ public class Setting extends AppCompatActivity {
             linearLayoutDeveloperContent.setVisibility(View.GONE);
         }
     }
+
+
 }
