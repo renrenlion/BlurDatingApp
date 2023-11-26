@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
     TextView textSignUp;
     ProgressBar progressBar;
 
-    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

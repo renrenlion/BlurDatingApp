@@ -171,7 +171,7 @@
                     android:id="@+id/spinner_dayoff"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:entries="@array/frequency_list"
+                    android:entries="@array/dayoff_list"
                     android:hint="black" />
                 <View
                     android:layout_width="match_parent"

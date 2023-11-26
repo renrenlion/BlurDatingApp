@@ -13,6 +13,18 @@
         android:theme="@style/Theme.BlurDatingApplication"
         tools:targetApi="31">
         <activity
+            android:name=".chat.ChatroomModel"
+            android:exported="false" />
+        <activity
+            android:name=".chat.ChatRoomModel"
+            android:exported="false" />
+        <activity
+            android:name=".registration.SetUpAllUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".mypage.EditProfile"
+            android:exported="false" />
+        <activity
             android:name=".Setting"
             android:exported="false" />
         <activity
