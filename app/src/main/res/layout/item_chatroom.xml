@@ -1,0 +1,110 @@
+<!-- item_chatroom.xml -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:id="@+id/chatroom_item">
+
+    <TextView
+        android:id="@+id/otherUserTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other User"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/lastMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Message"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"/>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- item_chatroom.xml
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:id="@+id/chatroom_item">
+
+        <!- Chatroom Item Content
+        <ImageView
+            android:id="@id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/arrow_icon"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/chatroom_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_marginStart="16dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/last_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="14sp"
+            android:layout_below="@+id/chatroom_name"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_marginStart="16dp"
+            android:layout_toRightOf="@+id/profile_image"/>
+
+        <TextView
+            android:id="@+id/timestamp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:layout_below="@+id/last_message_text"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:layout_marginStart="16dp"/>
+
+
+    </RelativeLayout>
+    -->

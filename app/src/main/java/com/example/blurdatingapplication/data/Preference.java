@@ -8,8 +8,14 @@ public class Preference {
     private String bodyType;
     private String facialType;
 
-    Preference(){
+    Preference() {
 
+        this.height = "-.-";
+        this.weight = "---";
+        this.hairColor = "-";
+        this.eyeColor = "-";
+        this.bodyType = "-";
+        this.facialType = "-";
     }
 
     public Preference(String height, String weight, String hairColor, String eyeColor, String bodyType, String facialType) {

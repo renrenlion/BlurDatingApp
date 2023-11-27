@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+        <!-- Left Message Layout (Received) -->
+        <LinearLayout
+            android:id="@+id/leftMessageLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="80dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/leftMessageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/left_message_bg"
+                android:backgroundTint="@color/light_gray"
+                android:padding="8dp"
+                android:text="Received Message"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <!-- Right Message Layout (Sent) -->
+        <LinearLayout
+            android:id="@+id/rightMessageLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp">
+
+            <TextView
+                android:id="@+id/rightMessageTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/right_message_bg"
+                android:text="Sent Message"
+                android:padding="8dp"
+                android:backgroundTint="@color/primary"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+
+</RelativeLayout>

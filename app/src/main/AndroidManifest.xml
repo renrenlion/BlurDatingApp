@@ -6,6 +6,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,9 +15,34 @@
         android:theme="@style/Theme.BlurDatingApplication"
         tools:targetApi="31">
         <activity
+
             android:name=".mypage.ProfitMonitoring"
             android:exported="false" />
         <activity
+
+            android:name=".PremiumActivity"
+            android:exported="false" />
+        <!--
+        <activity
+            android:name=".activity_premium"
+            android:exported="false" />
+
+        -->
+
+        <activity
+            android:name=".ChatActivity"/>
+
+        <activity
+            android:name=".chat.ChatroomModel"
+            android:exported="false"/>
+
+        <activity
+            android:name=".registration.SetUpAllUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".mypage.EditProfile"/>
+        <activity
+
             android:name=".Setting"
             android:exported="false" />
         <activity

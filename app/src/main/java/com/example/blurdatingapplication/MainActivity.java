@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(item.getItemId() == R.id.nav_chat){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, chatFragment).commit();
-                    imageViewSetting.setVisibility(View.GONE);
+                    imageViewSetting.setVisibility(View.VISIBLE);
                 }
                 if(item.getItemId() == R.id.nav_mypage){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame,myPageFragment).commit();

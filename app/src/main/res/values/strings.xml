@@ -10,7 +10,6 @@
     </string-array>
 
     <string-array name="number_array">
-        <item>-</item>
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -21,6 +20,19 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
+    </string-array>
+
+    <string-array name="decimal_array">
+        <item>.0</item>
+        <item>.1</item>
+        <item>.2</item>
+        <item>.3</item>
+        <item>.4</item>
+        <item>.5</item>
+        <item>.6</item>
+        <item>.7</item>
+        <item>.8</item>
+        <item>.9</item>
     </string-array>
 
     <string-array name="hair_color_list">
@@ -123,31 +135,42 @@
 
     <string-array name="music_list">
         <item>-</item>
-        <item>Action Games</item>
-        <item>Adventure Games</item>
-        <item>Arcade Games</item>
-        <item>Board Games</item>
-        <item>Brain Games</item>
-        <item>Battle Royale Games</item>
-        <item>Card Games</item>
-        <item>Educational Games</item>
-        <item>Horror Games</item>
-        <item>Mobile Games</item>
-        <item>Multiplayer Online Battle Arena (MOBA)</item>
-        <item>Party Games</item>
-        <item>Platformer Games</item>
-        <item>Puzzle Games</item>
-        <item>Racing Games</item>
-        <item>Role-Playing Games</item>
-        <item>Rhythm Games</item>
-        <item>SandBox Games</item>
-        <item>Shooter Games</item>
-        <item>Simulation Games</item>
-        <item>Sports Games</item>
-        <item>Strategy Games</item>
-        <item>Quiz Games</item>
-        <item>Other</item>
+        <item>Acoustic</item>
+        <item>Ambient</item>
+        <item>Alternative</item>
+        <item>Blues</item>
+        <item>Chillout</item>
+        <item>Classical</item>
+        <item>Country</item>
+        <item>Disco</item>
+        <item>Dubstep</item>
+        <item>EDM</item>
+        <item>Electronic</item>
+        <item>Folk</item>
+        <item>Funk</item>
+        <item>Gospel</item>
+        <item>Hard Rock</item>
+        <item>Hip Hop</item>
+        <item>House</item>
+        <item>J-Pop</item>
+        <item>Jazz</item>
+        <item>K-Pop</item>
+        <item>Latin</item>
+        <item>Metal</item>
+        <item>Opera</item>
+        <item>Punk</item>
+        <item>Pop</item>
+        <item>R-and-B</item>
+        <item>Rap</item>
+        <item>Reggae</item>
+        <item>Rock</item>
+        <item>Salsa</item>
+        <item>Soul</item>
+        <item>Techno</item>
+        <item>Trance</item>
+        <item>Trap</item>
     </string-array>
+
 
     <string-array name="gaming_list">
         <item>-</item>
@@ -488,6 +511,16 @@
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+    <string name="reload">Reload</string>
+    <string name="add_spot_to_first">Add spot to first</string>
+    <string name="add_spot_to_last">Add spot to last</string>
+    <string name="remove_spot_from_first">Remove spot from first</string>
+    <string name="remove_spot_from_last">Remove spot from last</string>
+    <string name="replace_first_spot">Replace first spot</string>
+    <string name="swap_first_for_last">Swap first for last</string>
 
 </resources>
 

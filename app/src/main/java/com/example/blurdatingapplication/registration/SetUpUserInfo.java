@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.blurdatingapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class SetUpUserInfo extends AppCompatActivity {
     TextInputEditText  editTextUserName;
@@ -31,12 +35,30 @@ public class SetUpUserInfo extends AppCompatActivity {
             public void onClick(View view) {
                 String username = editTextUserName.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(), SetUpUserInfo2.class);
-                intent.putExtra("username", username);
+                isUsernameAlreadyInUse(username);
+            }
+        });
+    }
 
-                // Move to next activity
-                startActivity(intent);
-                finish();
+    private void isUsernameAlreadyInUse(String username) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersCollection = db.collection("users");
+
+        // Query Firestore to check if the username already exists
+        Query query = usersCollection.whereEqualTo("username", username);
+
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                if (task.getResult() != null && !task.getResult().isEmpty()) {
+                    Toast.makeText(SetUpUserInfo.this, "username is already in use", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), SetUpUserInfo2.class);
+                    intent.putExtra("username", username);
+                    startActivity(intent);
+                    finish();
+
+                }
             }
         });
     }

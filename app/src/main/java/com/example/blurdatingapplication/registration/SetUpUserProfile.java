@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.example.blurdatingapplication.MainActivity;
 import com.example.blurdatingapplication.R;
+import com.example.blurdatingapplication.mypage.EditProfile;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.example.blurdatingapplication.utils.FunctionUtil;
 
@@ -48,7 +49,7 @@ public class SetUpUserProfile extends AppCompatActivity {
         buttonCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SetUpProfilePhysicalFeature.class);
+                Intent intent = new Intent(getApplicationContext(), SetUpAllUserProfile.class);
                 startActivity(intent);
                 finish();
             }
