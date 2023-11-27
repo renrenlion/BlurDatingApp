@@ -84,7 +84,7 @@ public class ExploreFragment extends Fragment implements CardStackListener {
             @Override
             public void onSpotsReady(List<Spot> spots) {
                 if (isAdded()) {
-                    paginate(spots);
+                    //paginate(spots);
                 }
             }
         });
@@ -103,26 +103,27 @@ public class ExploreFragment extends Fragment implements CardStackListener {
     @Override
     public void onCardSwiped(Direction direction) {
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
-        if (manager.getTopPosition() == adapter.getItemCount() - 5) {
-            createSpots(new SpotsCallback() {
-                @Override
-                public void onSpotsReady(List<Spot> spots) {
-                    paginate(spots);
-                }
-            });
+        int topPosition = manager.getTopPosition();
+        int previousPosition = topPosition - 1;
+        List<Spot> spots = adapter.getSpots();
 
+        if (topPosition == spots.size() - 1) {
+            // Disable swiping when the last card is reached
+            manager.setSwipeableMethod(SwipeableMethod.None);
         }
 
+
         if(direction == Direction.Left || direction == Direction.Right){
-            setChekedUserIds();
+            if (topPosition >= 0 && topPosition < spots.size()) {
+                // Get the swiped user ID from the spot at the top position
+                String swipedUserId = spots.get(previousPosition).getUserId();
+                setChekedUserIds(swipedUserId);
+            }
         }
 
         if (direction == Direction.Right) {
-            List<Spot> spots = adapter.getSpots();
-            int topPosition = manager.getTopPosition();
-
             if (topPosition >= 0 && topPosition < spots.size()) {
-                String swipedUserId = spots.get(topPosition).getUserId();
+                String swipedUserId = spots.get(previousPosition).getUserId();
                 setWaitedUserIds(swipedUserId);
             } else {
                 // Handle the case where topPosition is out of bounds
@@ -131,7 +132,6 @@ public class ExploreFragment extends Fragment implements CardStackListener {
         }
 
     }
-
 
     @Override
     public void onCardRewound() {
@@ -230,20 +230,6 @@ public class ExploreFragment extends Fragment implements CardStackListener {
 
 
 
-    private void paginate(List<Spot> spots) {
-        if (adapter != null) {
-            List<Spot> oldSpots = adapter.getSpots();
-            List<Spot> newSpots = new ArrayList<>(oldSpots);
-            newSpots.addAll(spots);
-            SpotDiffCallback callback = new SpotDiffCallback(oldSpots, newSpots);
-            DiffUtil.DiffResult result = DiffUtil.calculateDiff(callback);
-            adapter.setSpots(newSpots);
-            result.dispatchUpdatesTo(adapter);
-        }
-    }
-
-
-
     public void createSpots(SpotsCallback callback) {
         List<Spot> spots = new ArrayList<>();
 
@@ -268,6 +254,9 @@ public class ExploreFragment extends Fragment implements CardStackListener {
                                                     uri = uriTask.getResult();
 
                                                     spots.add(new Spot(otherUserId, otherUserData.getUsername(), String.valueOf(otherUserData.getAge()), String.valueOf(otherUserData.getLocation()), uri.toString()));
+                                                    if (spots.size() == queryTask.getResult().size()) {
+                                                        spots.add(new Spot("","","","",""));
+                                                    }
 
                                                     callback.onSpotsReady(spots);
                                                 } else {
@@ -316,29 +305,13 @@ public class ExploreFragment extends Fragment implements CardStackListener {
         void onSpotsReady(List<Spot> spots);
     }
 
-    public void setChekedUserIds() {
+    public void setChekedUserIds(String swipedUserId) {
         FireBaseUtil.currentUserCheckedUserList().get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 CheckedUser temp = task.getResult().toObject(CheckedUser.class);
 
-                if (temp == null) {
-                    temp = new CheckedUser();
-                }
                 currentUserCheckedList = temp;
-
-                // Get the list of spots from the adapter
-                List<Spot> spots = adapter.getSpots();
-
-                // Get the top position from the manager
-                int topPosition = manager.getTopPosition();
-
-                // Check if the top position is within bounds
-                if (topPosition >= 0 && topPosition < spots.size()) {
-                    // Get the swiped user ID from the spot at the top position
-                    String swipedUserId = spots.get(topPosition).getUserId();
-
-                    // Add the user ID to the CheckedUser list
-                    currentUserCheckedList.addToUserIds(swipedUserId);
+                currentUserCheckedList.addToUserIds(swipedUserId);
 
                     // Update the CheckedUser list in Firestore
                     FireBaseUtil.currentUserCheckedUserList().set(currentUserCheckedList)
@@ -352,7 +325,7 @@ public class ExploreFragment extends Fragment implements CardStackListener {
                     // Handle the case where the top position is out of bounds
                     Log.e("setChekedUserIds", "Top position is out of bounds");
                 }
-            }
+
         });
     }
 

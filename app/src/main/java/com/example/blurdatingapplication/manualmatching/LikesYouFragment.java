@@ -124,52 +124,37 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
         Log.d("CardStackView", "onCardDragging: d = " + direction.name() + ", r = " + ratio);
     }
 
-    @Override
     public void onCardSwiped(Direction direction) {
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
-        if (manager.getTopPosition() == adapter.getItemCount() - 5) {
-            createSpots(new SpotsCallback() {
-                @Override
-                public void onSpotsReady(List<Spot> spots) {
-                    paginate(spots);
-                }
-            });
+        int topPosition = manager.getTopPosition();
+        int previousPosition = topPosition - 1;
+        List<Spot> spots = adapter.getSpots();
 
+        if (topPosition == spots.size() - 1) {
+            manager.setSwipeableMethod(SwipeableMethod.None);
         }
-
-        if(direction == Direction.Left || direction == Direction.Right){
-            List<Spot> spots = adapter.getSpots();
-            int topPosition = manager.getTopPosition();
-
+        if(direction == Direction.Right||direction == Direction.Left){
             if (topPosition >= 0 && topPosition < spots.size()) {
-                String swipedUserId = spots.get(topPosition).getUserId();
+                String swipedUserId = spots.get(previousPosition).getUserId();
                 removeFromWaitList(swipedUserId);
-
             } else {
-
-                // Handle the case where topPosition is out of bounds
-                Log.e("onCardSwiped", "Top position is out of bounds");
+                Log.e("onCardSwiped", "Previous position is out of bounds");
             }
 
         }
 
         if (direction == Direction.Right) {
-            List<Spot> spots = adapter.getSpots();
-            int topPosition = manager.getTopPosition();
-            Toast.makeText(requireContext(), "Matching", Toast.LENGTH_LONG).show();
 
             if (topPosition >= 0 && topPosition < spots.size()) {
-                String swipedUserId = spots.get(topPosition).getUserId();
-                chatroomId = FireBaseUtil.getChatroomId(FireBaseUtil.currentUserId(),swipedUserId);
+                String swipedUserId = spots.get(previousPosition).getUserId();
+                chatroomId = FireBaseUtil.getChatroomId(FireBaseUtil.currentUserId(), swipedUserId);
                 getOrCreateChatRoomModel(swipedUserId);
-
             } else {
-                // Handle the case where topPosition is out of bounds
                 Log.e("onCardSwiped", "Top position is out of bounds");
             }
         }
-
     }
+
 
 
     @Override
@@ -267,18 +252,6 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
         });
     }
 
-    private void paginate(List<Spot> spots) {
-        if (adapter != null) {
-            List<Spot> oldSpots = adapter.getSpots();
-            List<Spot> newSpots = new ArrayList<>(oldSpots);
-            newSpots.addAll(spots);
-            SpotDiffCallback callback = new SpotDiffCallback(oldSpots, newSpots);
-            DiffUtil.DiffResult result = DiffUtil.calculateDiff(callback);
-            adapter.setSpots(newSpots);
-            result.dispatchUpdatesTo(adapter);
-        }
-    }
-
     private void createSpots(SpotsCallback callback) {
         List<Spot> spots = new ArrayList<>();
 
@@ -288,7 +261,10 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
                 if (userDocument.exists()) {
                     currentUserWaitList = userDocument.toObject(WaitUser.class);
                     List<String> userIds = currentUserWaitList.getUserIds();
-                    for (String otherUid : userIds) {
+                    for (int i = 0; i < userIds.size(); i++) {
+                        String otherUid = userIds.get(i);
+                        final int currentPosition = i; // Create a final variable to capture the current value of i
+
                         if (!"testID".equals(otherUid)) {
                             FireBaseUtil.otherUserData(otherUid).get().addOnCompleteListener(atask -> {
                                 UserData otherUserData = atask.getResult().toObject(UserData.class);
@@ -299,6 +275,11 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
                                                 uri = uriTask.getResult();
 
                                                 spots.add(new Spot(otherUserId, otherUserData.getUsername(), String.valueOf(otherUserData.getAge()), String.valueOf(otherUserData.getLocation()), uri.toString()));
+
+                                                // Check if it's the last card and add an empty spot
+                                                if (currentPosition == userIds.size() - 1) {
+                                                    spots.add(new Spot("", "", "", "", ""));
+                                                }
 
                                                 callback.onSpotsReady(spots);
                                             } else {
@@ -313,6 +294,7 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
             }
         });
     }
+
     interface SpotsCallback {
         void onSpotsReady(List<Spot> spots);
     }
@@ -348,11 +330,8 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
                 ChatroomModel chatroomModel = new ChatroomModel();
                 chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId);
                 FireBaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
-
             }
-
         });
     }
-
 }
 
