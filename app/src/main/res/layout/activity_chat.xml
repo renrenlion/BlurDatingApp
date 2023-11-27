@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
 
+    <!-- Chat Toolbar -->
     <RelativeLayout
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
@@ -13,6 +15,7 @@
         android:background="@color/primary"
         android:padding="10dp">
 
+        <!-- Back Button -->
         <ImageButton
             android:id="@+id/back_button"
             android:layout_width="48dp"
@@ -24,6 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"/>
 
+        <!-- Other User -->
         <TextView
             android:id="@+id/other_user"
             android:layout_width="wrap_content"
@@ -35,8 +39,8 @@
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"/>
 
+        <!-- Timer Countdown -->
         <TextView
-            android:layout_toLeftOf="@+id/request_unblur_btn"
             android:id="@+id/timer_countdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,26 +52,40 @@
             android:layout_marginStart="20dp"
             />
 
+        <!-- Unmatch Button -->
         <Button
-            android:id="@+id/request_unblur_btn"
+            android:id="@+id/unmatch_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Request to unblur"
-            android:layout_alignParentEnd="true"
+            android:textColor="@color/white"
+            android:text="Unmatch"
+            android:layout_toRightOf="@id/timer_countdown"
+            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
             android:backgroundTint="@color/darker_primary"/>
-
     </RelativeLayout>
 
+    <!-- Request to Unblur Button -->
+    <Button
+        android:id="@+id/request_unblur_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request to unblur"
+        android:layout_below="@+id/chat_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/darker_primary"/>
+
+    <!-- Chat Messages RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_messages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/chat_toolbar"
+        android:layout_below="@id/request_unblur_btn"
         android:layout_above="@+id/bottom_layout"
         />
 
+    <!-- Bottom Layout with Message Input -->
     <RelativeLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
@@ -75,6 +93,7 @@
         android:layout_alignParentBottom="true"
         android:padding="8dp">
 
+        <!-- Message Input EditText -->
         <EditText
             android:id="@+id/message_input"
             android:layout_width="match_parent"
@@ -91,6 +110,7 @@
             android:padding="10dp"
             />
 
+        <!-- Send Message Button -->
         <ImageButton
             android:id="@+id/send_message_btn"
             android:layout_width="48dp"
@@ -102,7 +122,6 @@
             app:tint="@color/primary"
             android:padding="8dp"
             android:layout_marginStart="10dp"/>
-
     </RelativeLayout>
-
 </RelativeLayout>
+

@@ -2,6 +2,7 @@ package com.example.blurdatingapplication;
 
 //import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -36,19 +37,29 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.w3c.dom.Text;
+
 import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
     TextView otherUserTextView;
-    //private TextView countdownTimerTextView;
+    TextView countdownTimerTextView;
     //private Button requestUnblurButton;
     RecyclerView chatMessagesRecyclerView;
     EditText messageInputEditText;
     ImageButton sendMessageButton, back_button;
     ChatAdapter chatAdapter;
     FirestoreRecyclerOptions<ChatModel> options;
+
+    // Timer functionality
+    boolean isCountdownStarted = false;
+    int messageCounter = 0;
+    CountDownTimer countDownTimer;
+    long timeLeftInMillis = 4 * 60 * 60 * 1000; // Initial time: 24 hours
+    boolean timerRunning = false;
+
 
     Query query;
 
@@ -150,6 +161,7 @@ public class ChatActivity extends AppCompatActivity {
                     messageInputEditText.setText("");
                     Log.d("FirestoreDebug", "Message added successfully");
                     updateLastMessageInChatroom(chatroomId, newMessage);
+                    handleCountdownTimer();
                 })
                 .addOnFailureListener(e -> {
                     // Handle the failure to add the message
@@ -184,6 +196,7 @@ public class ChatActivity extends AppCompatActivity {
                             chatroomDocRef.update("lastM", newMessage.getMessage())
                                     .addOnSuccessListener(aVoid -> {
                                         Log.d("FirestoreDebug", "Last message updated successfully");
+                                        updateLastMSenderId(chatroomId, newMessage.getSenderId());
                                     })
                                     .addOnFailureListener(e -> {
                                         Log.e("FirestoreDebug", "Failed to update last message", e);
@@ -194,6 +207,61 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Log.e("FirestoreDebug", "Failed to get chatroom document", e);
                 });
+    }
+
+    private void updateLastMSenderId(String chatroomId, String senderId) {
+        DocumentReference chatroomDocRef = FirebaseFirestore.getInstance()
+                .collection("chatrooms")
+                .document(chatroomId);
+
+        // Update lastMSenderId with the senderId of the latest message
+        chatroomDocRef.update("lastMSenderId", senderId)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("FirestoreDebug", "LastMSenderId updated successfully");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FirestoreDebug", "Failed to update lastMSenderId", e);
+                });
+    }
+
+    private void handleCountdownTimer() {
+        messageCounter++;
+
+        if(messageCounter == 2 && !isCountdownStarted) {
+            startCountdownTimer();
+            isCountdownStarted = true;
+        }
+    }
+
+    private void startCountdownTimer() {
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountdownTimerText();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+
+        countDownTimer.start();
+        timerRunning = true;
+    }
+
+    private void updateCountdownTimerText() {
+        countdownTimerTextView = findViewById(R.id.timer_countdown);
+        countdownTimerTextView.setText(formatTime(timeLeftInMillis));
+    }
+
+    private String formatTime(long millis) {
+        int hours = (int)(millis / 1000) / 3600;
+        int minutes = (int)((millis/1000) % 3600) / 60;
+        int seconds = (int) (millis/ 1000) % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
     }
 
     @Override
@@ -213,6 +281,9 @@ public class ChatActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         chatAdapter.stopListening();
+        if(timerRunning) {
+            countDownTimer.cancel();
+        }
     }
 
 }
