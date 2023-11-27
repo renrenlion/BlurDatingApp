@@ -16,12 +16,25 @@
         <activity
             android:name=".PremiumActivity"
             android:exported="false" />
+        <!--
         <activity
             android:name=".activity_premium"
             android:exported="false" />
+
+        -->
+
         <activity
-            android:name=".ChatActivity"
+            android:name=".ChatActivity"/>
+
+        <activity
+            android:name=".chat.ChatroomModel"
+            android:exported="false"/>
+
+        <activity
+            android:name=".registration.SetUpAllUserProfile"
             android:exported="false" />
+        <activity
+            android:name=".mypage.EditProfile"/>
         <activity
             android:name=".Setting"
             android:exported="false" />

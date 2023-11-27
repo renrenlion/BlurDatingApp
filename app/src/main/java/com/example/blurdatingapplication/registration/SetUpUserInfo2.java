@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.blurdatingapplication.R;
+import com.example.blurdatingapplication.data.CheckedUser;
+import com.example.blurdatingapplication.data.PhysicalFeatures;
+import com.example.blurdatingapplication.data.Preference;
+import com.example.blurdatingapplication.data.Profile;
 import com.example.blurdatingapplication.data.UserData;
+import com.example.blurdatingapplication.data.WaitUser;
 import com.example.blurdatingapplication.utils.FunctionUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,9 +62,28 @@ public class SetUpUserInfo2 extends AppCompatActivity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                location = Integer.parseInt(editTextLocation.getText().toString());
-                phoneNumber = editTextPhoneNumber.getText().toString();
-                birthday = editTextBirthday.getText().toString();
+                // Get user input
+                String locationText = editTextLocation.getText().toString().trim();
+                String phoneNumberText = editTextPhoneNumber.getText().toString().trim();
+                String birthdayText = editTextBirthday.getText().toString().trim();
+
+                // Validation
+                if (TextUtils.isEmpty(locationText) || TextUtils.isEmpty(phoneNumberText) || TextUtils.isEmpty(birthdayText)) {
+                    // Display an error message if any EditText is empty
+                    Toast.makeText(SetUpUserInfo2.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    return; // Do not proceed
+                }
+
+                // Display an error message if the birthday is not in the yyyy/mm/dd format
+                if (!isValidDateFormat(birthdayText)) {
+                    Toast.makeText(SetUpUserInfo2.this, "Please enter the birthday in the format yyyy/mm/dd", Toast.LENGTH_SHORT).show();
+                    return; // Do not proceed
+                }
+
+                // Process other input values
+                location = Integer.parseInt(locationText);
+                phoneNumber = phoneNumberText;
+                birthday = birthdayText;
                 gender = spinnerGender.getSelectedItem().toString();
                 preferredGender = spinnerPreferredGender.getSelectedItem().toString();
                 age = FunctionUtil.calculateAge(birthday);
@@ -66,8 +92,13 @@ public class SetUpUserInfo2 extends AppCompatActivity {
         });
     }
 
-    void set() {
+    private boolean isValidDateFormat(String date) {
+        String regex = "^(19|20)\\d\\d/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$";
+        return date.matches(regex);
+    }
 
+    void set() {
+        String empty = "-";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String userId = user.getUid();
 
@@ -84,9 +115,36 @@ public class SetUpUserInfo2 extends AppCompatActivity {
             userData = new UserData(email, userId, username, phoneNumber, Timestamp.now(), birthday, location, stringToIntGender(gender), stringToIntGender(preferredGender), "-1","-1","-1", 0);
         }
 
+        Profile userProfile = new Profile(empty,empty,empty,empty,empty,empty,empty);
+        Preference userPreference = new Preference("0.0","000",empty,empty,empty,empty);
+        PhysicalFeatures userPhysicalFeatures = new PhysicalFeatures("0.0","000",empty,empty,empty,empty);
+        CheckedUser checkedUser = new CheckedUser();
+        WaitUser waitUser = new WaitUser();
+
         db.collection("users")
                 .document(userId)
-                .set(userData)
+                .set(userData);
+
+        db.collection("profile")
+                .document(userId)
+                .set(userProfile);
+
+        db.collection("physicalFeatures")
+                .document(userId)
+                .set(userPhysicalFeatures);
+
+        db.collection("preference")
+                .document(userId)
+                .set(userPreference);
+
+
+        db.collection("checkedUser")
+                .document(userId)
+                .set(checkedUser);
+
+        db.collection("waitUser")
+                .document(userId)
+                .set(waitUser)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -102,7 +160,7 @@ public class SetUpUserInfo2 extends AppCompatActivity {
     int stringToIntGender(String gender){
         switch (gender){
             case "Man": return 1;
-            case "Women": return 2;
+            case "Woman": return 2;
             default: return 0;
         }
     }

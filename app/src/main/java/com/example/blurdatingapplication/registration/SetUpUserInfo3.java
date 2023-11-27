@@ -91,8 +91,8 @@ public class SetUpUserInfo3 extends AppCompatActivity {
             ImagePicker.with(this)
                     .cameraOnly()
                     .cropSquare()
-                    .compress(512)
-                    .maxResultSize(512,512)
+                    .compress(614)
+                    .maxResultSize(614,614)
                     .createIntent(new Function1<Intent, Unit>() {
                         @Override
                         public Unit invoke(Intent intent) {
@@ -106,8 +106,8 @@ public class SetUpUserInfo3 extends AppCompatActivity {
             ImagePicker.with(this)
                     .galleryOnly()
                     .cropSquare()
-                    .compress(512)
-                    .maxResultSize(512,512)
+                    .compress(614)
+                    .maxResultSize(614,614)
                     .createIntent(new Function1<Intent, Unit>() {
                 @Override
                 public Unit invoke(Intent intent) {

@@ -16,6 +16,12 @@ public class FunctionUtil {
     public static void setFaceImage(Context context, Uri uri, ImageView imageView){
         Glide.with(context).load(uri).apply(RequestOptions.circleCropTransform()).into(imageView);
     }
+    public static void setProfileImage(Context context, Uri uri, ImageView imageView){
+        Glide.with(context).load(uri).into(imageView);
+    }
+    public static  void removeProfileImage(Context context, ImageView imageView){
+        Glide.with(context).clear(imageView);
+    }
 
 
     public static int calculateAge(String birthday) {

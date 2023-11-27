@@ -1,5 +1,6 @@
 package com.example.blurdatingapplication.chat;
 
+
 import com.google.firebase.Timestamp;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class ChatroomModel {
         this.chatroomId = chatroomId;
 
         // null checks
-        if(this.userIds == null) {
+        if (this.userIds == null) {
             this.userIds = new ArrayList<>();
         }
     }
