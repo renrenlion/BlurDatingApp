@@ -8,7 +8,8 @@ public class Preference {
     private String bodyType;
     private String facialType;
 
-    Preference(){
+    Preference() {
+
         this.height = "-.-";
         this.weight = "---";
         this.hairColor = "-";
@@ -73,5 +74,5 @@ public class Preference {
     public void setFacialType(String facialType) {
         this.facialType = facialType;
     }
-
 }
+

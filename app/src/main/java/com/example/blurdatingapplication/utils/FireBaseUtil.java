@@ -11,6 +11,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import com.google.firebase.firestore.core.FirestoreClient;
+
+
 import com.google.firebase.firestore.Query;
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -22,34 +25,51 @@ import java.util.List;
 
 public class FireBaseUtil {
 
-    //########################################### getCurrentUserData #########################################################
-    public static String getUserID() {
-        return FirebaseAuth.getInstance().getUid();
+
+    public static String getUserID(){return FirebaseAuth.getInstance().getUid();
     }
 
-    public static DocumentReference currentUserData() {
+    public static DocumentReference currentUserData(){
         return FirebaseFirestore.getInstance().collection("users").document(getUserID());
     }
+
+    public static DocumentReference currentUserInterest(){
+        return FirebaseFirestore.getInstance().collection("interest").document(getUserID());
+    }
+
+    public static DocumentReference currentUserProfile(){
+        return FirebaseFirestore.getInstance().collection("profile").document(getUserID());
+    }
+
+    public static DocumentReference currentUserPhysicalFeatures(){
+        return FirebaseFirestore.getInstance().collection("physicalfeatures").document(getUserID());
+    }
+
+    public static DocumentReference currentUserPreference(){
+        return FirebaseFirestore.getInstance().collection("preference").document(getUserID());
+    }
+
+    public static DocumentReference currentUserPayment(){   // For profit monitoring.
+        return FirebaseFirestore.getInstance().collection("paymentWeek").document(getUserID());
+    }
+
+    public static DocumentReference otherUserInterest(String otherUserId){
+        return FirebaseFirestore.getInstance().collection("interest").document(otherUserId);
+    }
+
+    public static DocumentReference otherUserPhysicalFeatures(String otherUserId){
+        return FirebaseFirestore.getInstance().collection("physicalFeatures").document(otherUserId);
+    }
+
+
+
+    //########################################### getCurrentUserData #########################################################
+
 
     public static CollectionReference usersCollectionReference() {
         return FirebaseFirestore.getInstance().collection("users");
     }
 
-    public static DocumentReference currentUserProfile() {
-        return FirebaseFirestore.getInstance().collection("profile").document(getUserID());
-    }
-
-    public static DocumentReference currentUserInterest() {
-        return FirebaseFirestore.getInstance().collection("interest").document(getUserID());
-    }
-
-    public static DocumentReference currentUserPhysicalFeatures() {
-        return FirebaseFirestore.getInstance().collection("physicalFeatures").document(getUserID());
-    }
-
-    public static DocumentReference currentUserPreference() {
-        return FirebaseFirestore.getInstance().collection("preference").document(getUserID());
-    }
 
     public static CollectionReference allUserCollectionUserData() {
         return FirebaseFirestore.getInstance().collection("users");
@@ -81,15 +101,7 @@ public class FireBaseUtil {
         return FirebaseFirestore.getInstance().collection("profile").document(otherUserId);
     }
 
-    public static DocumentReference otherUserInterest(String otherUserId) {
-        return FirebaseFirestore.getInstance().collection("interest").document(otherUserId);
-    }
-
-    public static DocumentReference otherUserPhysicalFeatures(String otherUserId) {
-        return FirebaseFirestore.getInstance().collection("physicalFeatures").document(otherUserId);
-    }
-
-//########################################### Photo #######################################################################################
+    //########################################### Photo #######################################################################################
     public static StorageReference getCurrentFacePicStorageReference() {
         return FirebaseStorage.getInstance().getReference().child(FireBaseUtil.getUserID()).child("face_pic")
                 .child("f" + FireBaseUtil.getUserID());

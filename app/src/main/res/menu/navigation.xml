@@ -4,7 +4,7 @@
         android:id="@+id/nav_manual"
         android:icon="@drawable/home"/>
 
-    <item android:title="Automatic"
+    <item android:title="Automatic Matching"
         android:id="@+id/nav_automatic"
         android:icon="@drawable/automatic"
          />
@@ -18,7 +18,7 @@
         android:id="@+id/nav_chat"
         android:icon="@drawable/chat"
         />
-    <item android:title="My Page"
+    <item android:title="My Profile"
         android:icon="@drawable/person"
         android:id="@+id/nav_mypage"
         />
