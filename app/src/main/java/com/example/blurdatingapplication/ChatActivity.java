@@ -581,8 +581,7 @@ public class ChatActivity extends AppCompatActivity {
         int seconds = (int) (millis/ 1000) % 60;
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
-
-
+    
     private void showUnmatchConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Unmatch Confirmation");

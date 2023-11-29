@@ -1,7 +1,5 @@
 package com.example.blurdatingapplication.mypage;
 
-import static java.security.AccessController.getContext;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -12,43 +10,27 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.blurdatingapplication.MainActivity;
 import com.example.blurdatingapplication.R;
 import com.example.blurdatingapplication.data.Interest;
 import com.example.blurdatingapplication.data.PhysicalFeatures;
 import com.example.blurdatingapplication.data.Preference;
 import com.example.blurdatingapplication.data.Profile;
 import com.example.blurdatingapplication.data.UserData;
-import com.example.blurdatingapplication.registration.SetUpInterest;
-import com.example.blurdatingapplication.registration.SetUpProfile;
-import com.example.blurdatingapplication.registration.SetUpUserInfo3;
-import com.example.blurdatingapplication.registration.SetUpUserProfile;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.example.blurdatingapplication.utils.FunctionUtil;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.auth.User;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -59,7 +41,7 @@ public class EditProfile extends AppCompatActivity {
     ImageView imageViewBack;
 
     ImageView imageViewUserImage1, imageViewUserImage2,imageViewUserImage3,imageViewUserImage4,
-             imageViewUserImage5, imageViewUserImage6;
+            imageViewUserImage5, imageViewUserImage6;
 
     ImageView imageViewDelete2, imageViewDelete3,imageViewDelete4, imageViewDelete5, imageViewDelete6;
 
@@ -100,7 +82,7 @@ public class EditProfile extends AppCompatActivity {
 
     String[] jobOpt,bloodTypeOpt, childOpt, drinkingOpt, smokingOpt, workOutOpt, dayOffOpt;
     String[] heightIntOpt, heightDecOpt, weight100Opt, weigth1Opt, weight10Opt,
-    hairColorOpt, eyeColorOpt, bodyTypeOpt, facilaTypeOpt;
+            hairColorOpt, eyeColorOpt, bodyTypeOpt, facilaTypeOpt;
 
     String[] PreferenceHeightIntOpt, PreferenceHeightDecOpt, PreferenceWeight100Opt, PreferenceWeigth1Opt, PreferenceWeight10Opt,
             PreferenceHairColorOpt, PreferenceEyeColorOpt, PreferenceBodyTypeOpt, PreferenceFacilaTypeOpt;
@@ -398,7 +380,7 @@ public class EditProfile extends AppCompatActivity {
     void getAllUserInfo(){
         FireBaseUtil.getCurrentFacePicStorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful() && task.getResult() != null ){
                         uri  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri,imageViewUserImage1);
                     }
@@ -406,7 +388,7 @@ public class EditProfile extends AppCompatActivity {
 
         FireBaseUtil.getCurrentPhoto2StorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful() && task.getResult() != null){
                         uri2  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri2,imageViewUserImage2);
                     }
@@ -421,7 +403,7 @@ public class EditProfile extends AppCompatActivity {
 
         FireBaseUtil.getCurrentPhoto3StorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()&&task.getResult() != null){
                         uri3  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri3,imageViewUserImage3);
                     }
@@ -436,7 +418,7 @@ public class EditProfile extends AppCompatActivity {
 
         FireBaseUtil.getCurrentPhoto4StorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()&&task.getResult() != null){
                         uri4  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri4,imageViewUserImage4);
                     }
@@ -451,7 +433,7 @@ public class EditProfile extends AppCompatActivity {
 
         FireBaseUtil.getCurrentPhoto5StorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()&&task.getResult() != null){
                         uri5  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri5, imageViewUserImage5);
                     }
@@ -466,7 +448,7 @@ public class EditProfile extends AppCompatActivity {
 
         FireBaseUtil.getCurrentPhoto6StorageReference().getDownloadUrl()
                 .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
+                    if(task.isSuccessful()&&task.getResult() != null){
                         uri6  = task.getResult();
                         FunctionUtil.setProfileImage(EditProfile.this,uri6, imageViewUserImage6);
                     }
@@ -755,85 +737,112 @@ public class EditProfile extends AppCompatActivity {
 
                     }
                 });
+
         imagePickLauncher2 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        if(data != null && data.getData() != null){
-                            uri2 = data.getData();
-                            FunctionUtil.setProfileImage(getApplicationContext(),uri2,imageViewUserImage2);
-                            imageViewAdd2.setVisibility(View.GONE);
-                            imageViewDelete2.setVisibility(View.VISIBLE);
+                result -> {
+                    try {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri2 = data.getData();
+                                FunctionUtil.setProfileImage(getApplicationContext(), uri2, imageViewUserImage2);
+                                imageViewAdd2.setVisibility(View.GONE);
+                                imageViewDelete2.setVisibility(View.VISIBLE);
+                            } else {
+                                imageViewAdd2.setVisibility(View.VISIBLE);
+                                imageViewDelete2.setVisibility(View.GONE);
+                            }
                         }
-                        else{
-                            imageViewAdd2.setVisibility(View.VISIBLE);
-                            imageViewDelete2.setVisibility(View.GONE);
-                        }
+                    } catch (Exception e) {
+                        imageViewAdd2.setVisibility(View.VISIBLE);
+                        imageViewDelete2.setVisibility(View.GONE);
                     }
                 });
+
         imagePickLauncher3 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        if(data != null && data.getData() != null){
-                            uri3 = data.getData();
-                            FunctionUtil.setProfileImage(getApplicationContext(),uri3,imageViewUserImage3);
-                            imageViewAdd3.setVisibility(View.GONE);
-                            imageViewDelete3.setVisibility(View.VISIBLE);
+                result -> {
+                    try {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri3 = data.getData();
+                                FunctionUtil.setProfileImage(getApplicationContext(), uri3, imageViewUserImage3);
+                                imageViewAdd3.setVisibility(View.GONE);
+                                imageViewDelete3.setVisibility(View.VISIBLE);
+                            } else {
+                                imageViewAdd3.setVisibility(View.VISIBLE);
+                                imageViewDelete3.setVisibility(View.GONE);
+                            }
                         }
-                        else{
-                            imageViewAdd3.setVisibility(View.VISIBLE);
-                            imageViewDelete3.setVisibility(View.GONE);
-                        }
+                    } catch (Exception e) {
+                        imageViewAdd3.setVisibility(View.VISIBLE);
+                        imageViewDelete3.setVisibility(View.GONE);
                     }
                 });
+
         imagePickLauncher4 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        if(data != null && data.getData() != null){
-                            uri4 = data.getData();
-                            FunctionUtil.setProfileImage(getApplicationContext(),uri4,imageViewUserImage4);
-                            imageViewAdd4.setVisibility(View.GONE);
-                            imageViewDelete4.setVisibility(View.VISIBLE);
+                result -> {
+                    try {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri4 = data.getData();
+                                FunctionUtil.setProfileImage(getApplicationContext(), uri4, imageViewUserImage4);
+                                imageViewAdd4.setVisibility(View.GONE);
+                                imageViewDelete4.setVisibility(View.VISIBLE);
+                            } else {
+                                imageViewAdd4.setVisibility(View.VISIBLE);
+                                imageViewDelete4.setVisibility(View.GONE);
+                            }
                         }
-                        else{
-                            imageViewAdd4.setVisibility(View.VISIBLE);
-                            imageViewDelete4.setVisibility(View.GONE);
-                        }
+                    } catch (Exception e) {
+                        imageViewAdd4.setVisibility(View.VISIBLE);
+                        imageViewDelete4.setVisibility(View.GONE);
                     }
                 });
+
         imagePickLauncher5 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null && data.getData() != null) {
-                            uri5 = data.getData();
-                            FunctionUtil.setProfileImage(getApplicationContext(), uri5, imageViewUserImage5);
-                            imageViewAdd5.setVisibility(View.GONE);
-                            imageViewDelete5.setVisibility(View.VISIBLE);
-                        } else {
-                            imageViewAdd5.setVisibility(View.VISIBLE);
-                            imageViewDelete5.setVisibility(View.GONE);
+                result -> {
+                    try {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri5 = data.getData();
+                                FunctionUtil.setProfileImage(getApplicationContext(), uri5, imageViewUserImage5);
+                                imageViewAdd5.setVisibility(View.GONE);
+                                imageViewDelete5.setVisibility(View.VISIBLE);
+                            } else {
+                                imageViewAdd5.setVisibility(View.VISIBLE);
+                                imageViewDelete5.setVisibility(View.GONE);
+                            }
                         }
+                    } catch (Exception e) {
+                        imageViewAdd5.setVisibility(View.VISIBLE);
+                        imageViewDelete5.setVisibility(View.GONE);
                     }
                 });
+
         imagePickLauncher6 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result->{
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        if(data != null && data.getData() != null){
-                            uri6 = data.getData();
-                            FunctionUtil.setProfileImage(getApplicationContext(),uri6,imageViewUserImage6);
-                            imageViewAdd6.setVisibility(View.GONE);
-                            imageViewDelete6.setVisibility(View.VISIBLE);
+                result -> {
+                    try {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri6 = data.getData();
+                                FunctionUtil.setProfileImage(getApplicationContext(), uri6, imageViewUserImage6);
+                                imageViewAdd6.setVisibility(View.GONE);
+                                imageViewDelete6.setVisibility(View.VISIBLE);
+                            } else {
+                                imageViewAdd6.setVisibility(View.VISIBLE);
+                                imageViewDelete6.setVisibility(View.GONE);
+                            }
                         }
-                        else{
-                            imageViewAdd6.setVisibility(View.VISIBLE);
-                            imageViewDelete6.setVisibility(View.GONE);
-                        }
+                    } catch (Exception e) {
+                        imageViewAdd6.setVisibility(View.VISIBLE);
+                        imageViewDelete6.setVisibility(View.GONE);
                     }
                 });
+
     }
 
     void setToDatabase() {

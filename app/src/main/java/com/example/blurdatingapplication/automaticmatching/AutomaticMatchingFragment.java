@@ -333,7 +333,7 @@ public class AutomaticMatchingFragment extends Fragment {
                     ChatroomModel chatroomModel = document.toObject(ChatroomModel.class);
                 } else {
                     // Chat room doesn't exist, create a new one
-                    ChatroomModel chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId);
+                    ChatroomModel chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId, "", false);
                     chatRoomRef.set(chatroomModel);
                 }
             } else {

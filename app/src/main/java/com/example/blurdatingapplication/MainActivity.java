@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.nav_manual){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, manualMatchingFragment).commit();
-                    imageViewSetting.setVisibility(View.GONE);
+                    imageViewSetting.setVisibility(View.VISIBLE);
                 }
                 if(item.getItemId() == R.id.nav_automatic){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, automaticMatchingFragment).commit();
-                    imageViewSetting.setVisibility(View.GONE);
+                    imageViewSetting.setVisibility(View.VISIBLE);
                 }
                 if(item.getItemId() == R.id.nav_notification){
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame, notificationFragment).commit();

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.blurdatingapplication.data.Preference;
 import com.example.blurdatingapplication.data.Profile;
 import com.example.blurdatingapplication.data.UserData;
 import com.example.blurdatingapplication.data.WaitUser;
+import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.example.blurdatingapplication.utils.FunctionUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +39,8 @@ public class SetUpUserInfo2 extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     UserData userData;
+
+    Uri uri1, uri2,uri3,uri4,uri5,uri6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +106,7 @@ public class SetUpUserInfo2 extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String userId = user.getUid();
 
+
         if (userData != null) {
             userData.setEmail(email);
             userData.setUsername(username);
@@ -120,6 +125,7 @@ public class SetUpUserInfo2 extends AppCompatActivity {
         PhysicalFeatures userPhysicalFeatures = new PhysicalFeatures("0.0","000",empty,empty,empty,empty);
         CheckedUser checkedUser = new CheckedUser();
         WaitUser waitUser = new WaitUser();
+
 
         db.collection("users")
                 .document(userId)
@@ -155,6 +161,10 @@ public class SetUpUserInfo2 extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
+
     }
 
     int stringToIntGender(String gender){

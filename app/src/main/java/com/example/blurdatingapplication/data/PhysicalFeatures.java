@@ -37,6 +37,7 @@ public class PhysicalFeatures {
         this.weight = weight;
     }
 
+
     public String getHairColor() {
         return hairColor;
     }

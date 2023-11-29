@@ -42,7 +42,7 @@ public class FireBaseUtil {
     }
 
     public static DocumentReference currentUserPhysicalFeatures(){
-        return FirebaseFirestore.getInstance().collection("physicalfeatures").document(getUserID());
+        return FirebaseFirestore.getInstance().collection("physicalFeatures").document(getUserID());
     }
 
     public static DocumentReference currentUserPreference(){
@@ -110,6 +110,10 @@ public class FireBaseUtil {
     public static StorageReference getCurrentPhoto2StorageReference() {
         return FirebaseStorage.getInstance().getReference().child(FireBaseUtil.getUserID()).child("pic_2")
                 .child("p2" + FireBaseUtil.getUserID());
+    }
+
+    public static StorageReference getPhotoTemp() {
+        return FirebaseStorage.getInstance().getReference().child("Tempo/gray.jpg");
     }
 
     // ######################### CHAT COMPONENT #########################

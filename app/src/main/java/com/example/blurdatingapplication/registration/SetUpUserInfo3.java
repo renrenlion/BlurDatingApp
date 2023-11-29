@@ -83,7 +83,10 @@ public class SetUpUserInfo3 extends AppCompatActivity {
                 finish();
             }
             else{
-                Toast.makeText(this, "Please add a face picture.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Please add a face picture.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(),SetUpUserProfile.class);
+                startActivity(intent);
+                finish();
             }
         });
 
