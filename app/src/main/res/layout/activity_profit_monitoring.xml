@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".mypage.ProfitMonitoring">
-
+<!-- Allows for the top bar generate.-->
     <RelativeLayout
         android:id="@+id/bar"
         android:layout_width="match_parent"
@@ -35,5 +35,20 @@
             android:textSize="25dp"
             android:textStyle="bold" />
     </RelativeLayout>
+<!-- Displays the profitCalculation results from the backend. -->
+    <TextView
+        android:id="@+id/totalProfitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:gravity="center"
+        android:text="Total Profit: "
+        android:textColor="@color/primary"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

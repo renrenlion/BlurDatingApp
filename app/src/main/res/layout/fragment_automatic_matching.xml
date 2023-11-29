@@ -6,27 +6,7 @@
     android:padding="10dp"
     tools:context=".automaticmatching.AutomaticMatchingFragment">
 
-    <RelativeLayout
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/off_gray">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:text="Automatic Matching"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-
+    <!-- Starts the automatic matching process if the user has a premium account or is a developer -->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

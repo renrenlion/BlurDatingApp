@@ -2,20 +2,15 @@ package com.example.blurdatingapplication.automaticmatching;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 
 import com.example.blurdatingapplication.R;
 import com.example.blurdatingapplication.chat.ChatroomModel;
@@ -25,13 +20,18 @@ import com.example.blurdatingapplication.data.Preference;
 import com.example.blurdatingapplication.data.Profile;
 import com.example.blurdatingapplication.data.UserData;
 import com.example.blurdatingapplication.data.WaitUser;
-import com.example.blurdatingapplication.data.CheckedUser;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import android.widget.Toast;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class AutomaticMatchingFragment extends Fragment {
 
@@ -51,7 +51,6 @@ public class AutomaticMatchingFragment extends Fragment {
         // Empty constructor
     }
 
-    // Define the UserIdCallback interface
     public interface UserIdCallback {
         void onUserIdRetrieved(String otherUserId);
     }
@@ -60,6 +59,8 @@ public class AutomaticMatchingFragment extends Fragment {
         void onUserInfoFetched();
     }
 
+
+
     @SuppressLint("LongLogTag")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,36 +68,40 @@ public class AutomaticMatchingFragment extends Fragment {
 
         buttonNext = view.findViewById(R.id.button);
 
+
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Use the callback to retrieve the other user ID and perform matching
-                retrieveAnotherUserIdAndMatch(new UserIdCallback() {
-                    @Override
-                    public void onUserIdRetrieved(String otherUserId) {
-                        Log.d("performMatching", "Points: " + points);
-                        if (points >= 10) {  // 10/14 = ~0.71
-                            Log.d("performMatching", "Matching conditions met. Points: " + points);
-                            performMatchingWithOtherUser(otherUserId);
+                Log.d("UserDataPlanValue", "User Plan Value: " + userData.getPlan());
+                if ((userData.getPlan() == 1) || (userData.getPlan() == 2)) { // Checks if its a premium plan or a developer plan.
+                    retrieveAnotherUserIdAndMatch(new UserIdCallback() {
+                        @Override
+                        public void onUserIdRetrieved(String otherUserId) {
+                            Log.d("performMatching", "Points: " + points);
+                            if (points >= 10) {  // 10/14 = ~0.71
+                                Log.d("performMatching", "Matching conditions met. Points: " + points);
+                                performMatchingWithOtherUser(otherUserId);
+                            } else {
+                                Log.d("performMatching", "Not enough points for matching");
+                            }
                         }
-                        else{
-                            Log.d("performMatching", "Not enough points for matching");
-                        }
-                    }
-                });
+                    });
+                }
+                else {
+                    showToastError();
+                }
             }
         });
         Log.d("AutomaticMatchingFragment", "Before getUserInfo()");
         getUserInfo(() -> {
             Log.d("AutomaticMatchingFragment", "All user info fetched successfully");
-            // Now you can proceed with your matching logic
         });
 
         return view;
     }
 
     private void retrieveAnotherUserIdAndMatch(UserIdCallback callback) {
-        // Assuming you have a collection named "users" in your Firestore database
         FireBaseUtil.currentUserData().get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -110,9 +115,10 @@ public class AutomaticMatchingFragment extends Fragment {
 
                         query.get().addOnCompleteListener(queryTask -> {
                             if (queryTask.isSuccessful()) {
-                                UserData otherUserData = null;
+                              //  UserData otherUserData = null;
                                 for (QueryDocumentSnapshot otherDocument : queryTask.getResult()) {
-                                    otherUserData = otherDocument.toObject(UserData.class);
+                                    points = 0;
+                                   UserData otherUserData = otherDocument.toObject(UserData.class);
 
                                     // Get other user's interests
                                     FireBaseUtil.otherUserInterest(otherUserData.getUid()).get().addOnCompleteListener(interestTask -> {
@@ -153,8 +159,6 @@ public class AutomaticMatchingFragment extends Fragment {
                                                         points += 1;
                                                     }
 
-                                                    // Process other user's interest here
-                                                    // Do something with otherUserInterest
                                                     Log.d("getOtherUserId", "Other user's interests: " + otherUserInterest.toString());
                                                 }
                                             }
@@ -168,6 +172,8 @@ public class AutomaticMatchingFragment extends Fragment {
                                         if (physicalTask.isSuccessful()) {
                                             PhysicalFeatures otherUserPhysicalFeatures = physicalTask.getResult().toObject(PhysicalFeatures.class);
                                             if (otherUserPhysicalFeatures != null && userPreference != null) {
+                                                Log.d("performMatching", "User Interest: " + userPreference.toString());
+                                                Log.d("performMatching", "Other User Interest: " + otherUserPhysicalFeatures.toString());
                                                 double otherUserHeight = Double.parseDouble(otherUserPhysicalFeatures.getHeight());
                                                 double otherUserWeight = Double.parseDouble(otherUserPhysicalFeatures.getWeight());
                                                 String otherUserHairColor = otherUserPhysicalFeatures.getHairColor();
@@ -196,11 +202,18 @@ public class AutomaticMatchingFragment extends Fragment {
                                                 if (Eyes.equals(otherUserEyeColor)) {
                                                     points += 1;
                                                 }
-                                                if (userData.getGender() == otherUserGender) {
+                                                if (userData.getPreferredGender() == otherUserGender) {
                                                     points += 1;
                                                 }
 
                                                 Log.d("getOtherUserId", "Other user's physical features: " + otherUserPhysicalFeatures.toString());
+                                                Log.d("Points", "Current number of Points: " + points);
+                                            }
+                                            Log.d("Points", "Current number of Points: " + points);
+
+                                            if (points >= 10){
+                                                Log.d("performMatching", "Matching conditions met. Points: " + points);
+                                                performMatchingWithOtherUser(otherUserData.getUid());
                                             }
                                         } else {
                                             Log.e("getOtherUserId", "Failed to get other user's interests", physicalTask.getException());
@@ -224,8 +237,6 @@ public class AutomaticMatchingFragment extends Fragment {
     private void performMatchingWithOtherUser(String otherUserId) {
         Log.d("performMatching", "Inside performMatchingWithOtherUser");
         if (otherUserId != null) {
-            // Your matching logic here
-            // ...
             Log.d("performMatching", "Performing matching with other user ID: " + otherUserId);
             // Assuming you want to call setWaitedUserIds after successful matching
             setWaitedUserIds(otherUserId);
@@ -239,9 +250,22 @@ public class AutomaticMatchingFragment extends Fragment {
             // Create or retrieve the chat room model
             getOrCreateChatRoomModel(otherUserId);
 
+            showToast();
         } else {
             Log.e("performMatching", "Other user ID is null");
         }
+    }
+
+    private void showToast() {
+        Toast.makeText(getContext(), "New Chatrooms Available!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showToastError(){
+        Toast.makeText(getContext(), "Premium Plan Required!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showToastExist(){
+        Toast.makeText(getContext(), "No New Matches!", Toast.LENGTH_SHORT).show();
     }
 
     private void setWaitedUserIds(String otherUserID) {
@@ -260,7 +284,6 @@ public class AutomaticMatchingFragment extends Fragment {
                 FireBaseUtil.otherUserWaitUserList(otherUserID).set(otherUserWaitUserList)
                         .addOnSuccessListener(aVoid -> {
                             Log.d("onCardSwiped", "User ID added to wait user");
-                            // You can perform any additional actions here after updating the wait user list
                         })
                         .addOnFailureListener(e -> {
                             Log.e("onCardSwiped", "Failed to update", e);
@@ -294,15 +317,33 @@ public class AutomaticMatchingFragment extends Fragment {
         });
     }
 
-    void getOrCreateChatRoomModel(String otherUserId){
+    @SuppressLint("LongLogTag")
+    void getOrCreateChatRoomModel(String otherUserId) {
         List<String> userIds = Arrays.asList(FireBaseUtil.currentUserId(), otherUserId);
-        FireBaseUtil.getChatroomReference(chatroomId).get().addOnCompleteListener(task -> {
-            if(task.isSuccessful()){
-                ChatroomModel chatroomModel = new ChatroomModel();
-                chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId);
-                FireBaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
+        String chatroomId = generateChatroomId(userIds);
+
+        // Reference to the chat room document
+        DocumentReference chatRoomRef = FireBaseUtil.getChatroomReference(chatroomId);
+
+        chatRoomRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+
+                if (document.exists()) {
+                    ChatroomModel chatroomModel = document.toObject(ChatroomModel.class);
+                } else {
+                    // Chat room doesn't exist, create a new one
+                    ChatroomModel chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId);
+                    chatRoomRef.set(chatroomModel);
+                }
+            } else {
+                Log.e("getOrCreateChatRoomModel", "Failed to get chat room data", task.getException());
             }
         });
+    }
+
+    private String generateChatroomId(List<String> userIds) {
+        return String.join("_", userIds);
     }
 
 

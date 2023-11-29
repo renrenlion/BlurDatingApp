@@ -1,43 +1,30 @@
 package com.example.blurdatingapplication;
 
 //import android.content.Intent;
+
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.HashMap;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-//import com.example.blurdatingapplication.R;
 import com.example.blurdatingapplication.chat.ChatAdapter;
-import com.example.blurdatingapplication.chat.ChatFragment;
 import com.example.blurdatingapplication.chat.ChatModel;
-import com.example.blurdatingapplication.chat.ChatroomAdapter;
-import com.example.blurdatingapplication.chat.TempMatchManager;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import androidx.fragment.app.FragmentTransaction;
-
-import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.List;

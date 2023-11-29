@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.blurdatingapplication.data.UserData;
+import com.example.blurdatingapplication.mypage.ProfitMonitoring;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,6 +28,8 @@ public class Setting extends AppCompatActivity {
     TextView textViewDeveloper;
     LinearLayout linearLayoutDeveloperContent;
 
+    LinearLayout linearLayoutAutomaticMatching;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,18 @@ public class Setting extends AppCompatActivity {
         textViewDeveloper = findViewById(R.id.developer_text);
         linearLayoutDeveloperContent = findViewById(R.id.developer_content);
 
+        linearLayoutAutomaticMatching = findViewById(R.id.profit_monitoring);
+
         getUserData();
 
+        linearLayoutAutomaticMatching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open ProfitMonitoringActivity when clicked
+                Intent intent = new Intent(getApplicationContext(), ProfitMonitoring.class);
+                startActivity(intent);
+            }
+        });
 
         layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
