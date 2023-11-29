@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.blurdatingapplication.R;
+import com.example.blurdatingapplication.data.UserData;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
@@ -27,6 +29,7 @@ import java.util.Locale;
 
 public class ChatroomAdapter extends FirestoreRecyclerAdapter<ChatroomModel, ChatroomAdapter.ChatroomViewHolder> {
     Context context;
+    UserData otherUser;
     private OnChatroomClickListener chatroomClickListener;
     public ChatroomAdapter(@NonNull FirestoreRecyclerOptions<ChatroomModel> options, Context context, OnChatroomClickListener chatroomClickListener) {
         super(options);
@@ -40,7 +43,33 @@ public class ChatroomAdapter extends FirestoreRecyclerAdapter<ChatroomModel, Cha
 
         String otherUserId = (userIds.get(0).equals(FireBaseUtil.getUserID())) ? userIds.get(1) : userIds.get(0);
 
-        holder.otherUserTextView.setText(otherUserId);
+        //holder.otherUserTextView.setText(otherUserId);
+
+        // Fetch userdata for the other user
+        FirebaseFirestore.getInstance().collection("users")
+                .document(otherUserId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String username = documentSnapshot.getString("username");
+                        if (username != null) {
+                            holder.otherUserTextView.setText(username);
+                        } else {
+                            //Log.e(TAG, "Username not found for user ID: " + otherUserId);
+                            // Handle the error, set a default username or show an error message
+                        }
+                    } else {
+                        //Log.e(TAG, "User not found for user ID: " + otherUserId);
+                        // Handle the error, set a default username or show an error message
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    //Log.e(TAG, "Error fetching username: " + e.getMessage());
+                    // Handle the error, set a default username or show an error message
+                });
+
+
+
         holder.lastMessageText.setText(model.getLastM()); // Adjust as per your logic
 
         // holder.unreadCountText.setText(String.valueOf(model.getUnreadCount())); // Adjust as per your logic
@@ -59,14 +88,14 @@ public class ChatroomAdapter extends FirestoreRecyclerAdapter<ChatroomModel, Cha
     }
 
     static class ChatroomViewHolder extends RecyclerView.ViewHolder {
-        // ImageView profileImage;
+        ImageView profileImage;
         TextView otherUserTextView;
         TextView lastMessageText;
        // TextView timestampText;
         public ChatroomViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            // profileImage = itemView.findViewById(R.id.profile_image);
+            profileImage = itemView.findViewById(R.id.profileImageView);
             otherUserTextView = itemView.findViewById(R.id.otherUserTextView);
             lastMessageText = itemView.findViewById(R.id.lastMessageTextView);
             //timestampText = itemView.findViewById(R.id.timestamp_text);

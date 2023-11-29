@@ -16,8 +16,8 @@
         android:padding="10dp">
 
         <!-- Back Button -->
-        <ImageButton
-            android:id="@+id/back_button"
+        <ImageView
+            android:id="@+id/back"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/back_button"
@@ -37,7 +37,10 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/back"
+            android:clickable="true"
+            android:focusable="true"/>
 
         <!-- Timer Countdown -->
         <TextView
@@ -49,20 +52,33 @@
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/other_user"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             />
 
-        <!-- Unmatch Button -->
+        <!-- Unblur Request Indicator -->
+
+        <ImageView
+            android:id="@+id/unblur_request_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="19dp"
+            android:layout_toEndOf="@+id/timer_countdown"
+            android:src="@drawable/unblur_request_indicator"
+            android:tint="@color/darker_primary"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
         <Button
-            android:id="@+id/unmatch_btn"
+            android:id="@+id/unmatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Unmatch"
-            android:layout_toRightOf="@id/timer_countdown"
+            android:layout_toRightOf="@id/unblur_request_indicator"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:backgroundTint="@color/darker_primary"/>
+
     </RelativeLayout>
 
     <!-- Request to Unblur Button -->
@@ -75,6 +91,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/darker_primary"/>
+
+    <Button
+        android:id="@+id/accept_decline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accept / Decline"
+        android:layout_below="@+id/request_unblur_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="@color/gray"
+        android:visibility="gone"
+        android:layout_centerVertical="true"/>
 
     <!-- Chat Messages RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -123,5 +153,6 @@
             android:padding="8dp"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
+
 </RelativeLayout>
 

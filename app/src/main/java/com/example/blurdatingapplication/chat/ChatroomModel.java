@@ -1,8 +1,6 @@
 package com.example.blurdatingapplication.chat;
 
-
 import com.google.firebase.Timestamp;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +12,22 @@ public class ChatroomModel {
     private List<String> userIds;
     private String chatroomId;
 
+    private String unblurRequestSenderId;
+    private boolean unblurReqeustAccepted;
+
+
     public ChatroomModel() {
         // Default constructor required for Firestore
     }
 
-    public ChatroomModel(Timestamp mostRecentTimeStamp, String lastMSenderId, String lastM, List<String> userIds, String chatroomId) {
+    public ChatroomModel(Timestamp mostRecentTimeStamp, String lastMSenderId, String lastM, List<String> userIds, String chatroomId, String unblurRequestSenderId, boolean unblurReqeustAccepted) {
         this.mostRecentTimeStamp = mostRecentTimeStamp;
         this.lastMSenderId = lastMSenderId;
         this.lastM = lastM;
         this.userIds = userIds;
         this.chatroomId = chatroomId;
+        this.unblurRequestSenderId = unblurRequestSenderId;
+        this.unblurReqeustAccepted = unblurReqeustAccepted;
 
         // null checks
         if (this.userIds == null) {

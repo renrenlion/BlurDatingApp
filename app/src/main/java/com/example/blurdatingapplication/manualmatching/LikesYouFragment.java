@@ -328,7 +328,7 @@ public class LikesYouFragment extends Fragment implements CardStackListener {
         FireBaseUtil.getChatroomReference(chatroomId).get().addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 ChatroomModel chatroomModel = new ChatroomModel();
-                chatroomModel = new ChatroomModel(null, "", "", userIds, chatroomId);
+                chatroomModel = new ChatroomModel(null, "", "New Match", userIds, chatroomId, "", false);
                 FireBaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
             }
         });

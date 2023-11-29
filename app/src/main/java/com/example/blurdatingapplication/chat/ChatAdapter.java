@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.WindowDecorActionBar;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.blurdatingapplication.utils.FireBaseUtil;
 
@@ -17,13 +16,7 @@ import com.example.blurdatingapplication.utils.FireBaseUtil;
 import com.example.blurdatingapplication.R;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.Timestamp;
 
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class ChatAdapter extends FirestoreRecyclerAdapter<ChatModel, ChatAdapter.ChatModelViewHolder> {
     private Context context;
@@ -44,6 +37,9 @@ public class ChatAdapter extends FirestoreRecyclerAdapter<ChatModel, ChatAdapter
     protected void onBindViewHolder(@NonNull ChatModelViewHolder holder, int position, @NonNull ChatModel model) {
         // Set the data to views based on the model
         holder.bind(model);
+    }
+
+    public void updateLastMessage(String chatroomId, String message) {
     }
 
     static class ChatModelViewHolder extends RecyclerView.ViewHolder {

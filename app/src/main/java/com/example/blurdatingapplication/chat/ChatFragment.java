@@ -22,6 +22,7 @@ import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
 
 
 public class ChatFragment extends Fragment {
@@ -55,6 +56,8 @@ public class ChatFragment extends Fragment {
         FirestoreRecyclerOptions<ChatroomModel> options = new FirestoreRecyclerOptions.Builder<ChatroomModel>()
                 .setQuery(chatroomRef.whereArrayContains("userIds", FireBaseUtil.getUserID()), ChatroomModel.class)
                 .build();
+
+        Objects.requireNonNull(options);
 
         chatroomAdapter = new ChatroomAdapter(options, getContext(), new ChatroomAdapter.OnChatroomClickListener() {
             @Override

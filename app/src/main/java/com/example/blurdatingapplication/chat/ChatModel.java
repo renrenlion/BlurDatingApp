@@ -8,6 +8,9 @@ public class ChatModel {
     private String senderId;
     private Timestamp timestamp;
 
+    private String unblurRequestSenderId;  // ID of the user who sent the unblur request
+    private boolean unblurRequestAccepted;
+
     public ChatModel() {
 
     }
@@ -40,6 +43,22 @@ public class ChatModel {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getUnblurRequestSenderId() {
+        return unblurRequestSenderId;
+    }
+
+    public void setUnblurRequestSenderId(String unblurRequestSenderId) {
+        this.unblurRequestSenderId = unblurRequestSenderId;
+    }
+
+    public boolean isUnblurRequestAccepted() {
+        return unblurRequestAccepted;
+    }
+
+    public void setUnblurRequestAccepted(boolean unblurRequestAccepted) {
+        this.unblurRequestAccepted = unblurRequestAccepted;
     }
 }
 

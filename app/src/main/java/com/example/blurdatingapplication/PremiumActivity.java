@@ -1,64 +1,106 @@
 package com.example.blurdatingapplication;
 
-
-
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.blurdatingapplication.utils.FireBaseUtil;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PremiumActivity extends AppCompatActivity {
 
-    private EditText editTextCardNumber;
-    private EditText editTextExpiryDate;
-    private EditText editTextCVC;
-    private Button btnSubscribe;
+    EditText bankingInfoEditText, billingInfoEditText, creditCardInfoEditText, expirationDateEditText, csvEditText;
+    Button saveButton;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium);
 
-        // Initialize UI elements
-        editTextCardNumber = findViewById(R.id.editTextCardNumber);
-        editTextExpiryDate = findViewById(R.id.editTextExpiryDate);
-        editTextCVC = findViewById(R.id.editTextCVC);
-        btnSubscribe = findViewById(R.id.btnSubscribe);
+        bankingInfoEditText = findViewById(R.id.editTextBankingInfo);
+        billingInfoEditText = findViewById(R.id.editTextBillingInfo);
+        creditCardInfoEditText = findViewById(R.id.editTextCreditCardInfo);
+        expirationDateEditText = findViewById(R.id.editTextExpirationDate);
+        csvEditText = findViewById(R.id.editTextCsv);
+        saveButton = findViewById(R.id.buttonSave);
 
-        // Set click listener for the Subscribe button
-        btnSubscribe.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                // Perform subscription logic here
-                subscribeToPremium();
+            public void onClick(View view) {
+                savePremiumData();
+            }
+        });
+
+        Button cancelButton = findViewById(R.id.buttonCancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish(); // Close the activity
             }
         });
     }
 
-    private void subscribeToPremium() {
-        // In a real app, you would handle payment processing here.
-        // This is a simplified example.
+    private void savePremiumData() {
+        String bankingInfo = bankingInfoEditText.getText().toString().trim();
+        String billingInfo = billingInfoEditText.getText().toString().trim();
+        String creditCardInfo = creditCardInfoEditText.getText().toString().trim();
+        String expirationDate = expirationDateEditText.getText().toString().trim();
+        String csv = csvEditText.getText().toString().trim();
 
-        String cardNumber = editTextCardNumber.getText().toString().trim();
-        String expiryDate = editTextExpiryDate.getText().toString().trim();
-        String cvc = editTextCVC.getText().toString().trim();
-
-        // Validate input fields
-        if (cardNumber.isEmpty() || expiryDate.isEmpty() || cvc.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
+        // Check if all fields are filled out
+        if (!TextUtils.isEmpty(bankingInfo) && !TextUtils.isEmpty(billingInfo) &&
+                !TextUtils.isEmpty(creditCardInfo) && !TextUtils.isEmpty(expirationDate) && !TextUtils.isEmpty(csv)) {
+            // Update the user's document in Firestore with premium data
+            updatePremiumData(bankingInfo, billingInfo, creditCardInfo, expirationDate, csv);
+        } else {
+            // Inform the user that all fields must be filled out
+            Toast.makeText(this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+            return; // Add this line to prevent further execution if fields are not filled out
         }
+    }
 
-        // TODO: Implement your payment processing logic here
-        // For a real app, you might want to use a secure payment gateway.
+    private void updatePremiumData(String bankingInfo, String billingInfo, String creditCardInfo,
+                                   String expirationDate, String csv) {
+        String userId = FireBaseUtil.currentUserId();
 
-        // For this example, just show a success message.
-        Toast.makeText(this, "Subscription successful!", Toast.LENGTH_SHORT).show();
+        DocumentReference userRef = FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(userId);
 
-        // You might want to navigate back to the main screen or perform other actions after a successful subscription.
+        // Create a map with the premium data
+        Map<String, Object> premiumData = new HashMap<>();
+        premiumData.put("bankingInfo", bankingInfo);
+        premiumData.put("billingInfo", billingInfo);
+        premiumData.put("creditcardInfo", creditCardInfo);
+        premiumData.put("expirationDate", expirationDate);
+        premiumData.put("csv", csv);
+
+        // Update the user's document with the premium data
+        userRef.update(premiumData)
+                .addOnSuccessListener(aVoid -> {
+                    // Update the plan field to 1
+                    userRef.update("plan", 1)
+                            .addOnSuccessListener(aVoid1 -> {
+                                Toast.makeText(this, "Premium data saved successfully", Toast.LENGTH_SHORT).show();
+                                finish(); // Close the activity after successful update
+                            })
+                            .addOnFailureListener(e -> {
+                                // Handle failure to update the plan field
+                                Toast.makeText(this, "Failed to update plan field", Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure to update premium data
+                    Toast.makeText(this, "Failed to save premium data", Toast.LENGTH_SHORT).show();
+                });
     }
 }

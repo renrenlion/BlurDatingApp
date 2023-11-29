@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.blurdatingapplication.LaunchActivity;
 import com.example.blurdatingapplication.Login;
 import com.example.blurdatingapplication.MainActivity;
+import com.example.blurdatingapplication.PremiumActivity;
 import com.example.blurdatingapplication.R;
 import com.example.blurdatingapplication.Setting;
 import com.example.blurdatingapplication.data.UserData;
@@ -31,7 +32,7 @@ import com.example.blurdatingapplication.utils.FunctionUtil;
 
 public class MyPageFragment extends Fragment {
     private Uri uri1;
-    TextView textViewUsername, textViewAge;
+    TextView textViewUsername, textViewAge, planNumber;
     Button buttonFind, buttonUpgrade, buttonEdit;
     ImageView imageViewFacePic;
     UserData userData;
@@ -63,6 +64,8 @@ public class MyPageFragment extends Fragment {
         buttonUpgrade = view.findViewById(R.id.btn_upgrade);
         buttonEdit = view.findViewById(R.id.btn_edit);
 
+        planNumber = view.findViewById(R.id.planNumber);
+
         linearLayout.setVisibility(View.GONE);
 
         getUserData();
@@ -78,6 +81,13 @@ public class MyPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), EditProfile.class));
+            }
+        });
+
+        buttonUpgrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PremiumActivity.class));
             }
         });
 
@@ -100,6 +110,15 @@ public class MyPageFragment extends Fragment {
             textViewAge.setText(Integer.toString(FunctionUtil.calculateAge(userData.getBirthday())));
             textViewUsername.setText(userData.getUsername());
 
+            // Check user's plan and set planNumber TextView
+            int userPlan = userData.getPlan();
+            if(userPlan == 1) {
+                planNumber.setText("Premium");
+            } else if (userPlan == 2){
+                planNumber.setText("Developer");
+            } else {
+                planNumber.setText("Free");
+            }
 
             new Handler().postDelayed(new Runnable() {
                 @Override
